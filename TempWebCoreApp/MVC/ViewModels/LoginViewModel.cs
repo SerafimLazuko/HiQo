@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using MVC.Controllers.OAuthControllers;
 
 namespace MVC.ViewModels
 {
@@ -18,8 +19,14 @@ namespace MVC.ViewModels
         public string Password { get; set; }
 
         [Display(Name ="Remember?")]
-        public bool RememberMe { get; set; }
+        public bool RememberMe { get; set; }    
 
         public string ReturnUrl { get; set; }
+
+        [Display(Name = "Login Via GitHub")]
+        public async Task<Action> LoginViaGithub()
+        {
+            
+        }
     }
 }
