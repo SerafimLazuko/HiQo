@@ -1,6 +1,7 @@
 ﻿@model MVC.ViewModels.LoginViewModel
 
 <h2>Вход в приложение</h2>
+
 <form method="post" asp-controller="Account" asp-action="Login"
       asp-route-returnUrl="@Model.ReturnUrl">
     <div asp-validation-summary="ModelOnly"></div>
@@ -22,10 +23,8 @@
         <input type="submit" value="Войти" />
     </div>
 
-    <p>
-        We're going to now talk to the GitHub API. Ready?
-        <a href="https://github.com/login/oauth/authorize?scope=user:email&client_id=<%= client_id %>">Click here</a> to begin!</a>
-    </p>
-    
-
+    <a asp-controller="GitHubAuthentification" asp-action="SignIn">GitHub Login</a>
 </form>
+
+
+

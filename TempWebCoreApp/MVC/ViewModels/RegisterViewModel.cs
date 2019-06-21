@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
 namespace MVC.ViewModels
@@ -15,17 +14,17 @@ namespace MVC.ViewModels
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
-              
+
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [Required]
-        [Compare("Password", ErrorMessage ="Passwords isn't match!")]
+        [Compare("Password", ErrorMessage = "Passwords isn't match!")]
         [DataType(DataType.Password)]
-        [Display(Name ="Confirm password")]
+        [Display(Name = "Confirm password")]
         public string PasswordConfirm { get; set; }
-
+        
     }
 }
