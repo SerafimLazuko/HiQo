@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using MVC.Models;
 using MVC.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MVC.Controllers
 {
@@ -37,6 +38,7 @@ namespace MVC.Controllers
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "user");
                     await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");
                 }
@@ -48,6 +50,7 @@ namespace MVC.Controllers
                     }
                 }
             }
+
             return View(model);
         }
 
@@ -68,7 +71,7 @@ namespace MVC.Controllers
             if (ModelState.IsValid)
             {
                 var result =
-                await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                await _signInManager.PasswordSignInAsync(model.Name, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))

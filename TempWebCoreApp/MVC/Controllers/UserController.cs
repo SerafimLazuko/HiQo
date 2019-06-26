@@ -6,21 +6,25 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using MVC.Models;
 using MVC.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace MVC.Controllers
 {
-    public class UsersController : Controller
+    [Authorize]
+    public class UserController : Controller
     {
         UserManager<User> _userManager;
 
-        public UsersController(UserManager<User> userManager)
+        public UserController(UserManager<User> userManager)
         {
             _userManager = userManager;
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Index() => View(_userManager.Users.ToList());
 
+        [Authorize(Roles = "admin")]
         public IActionResult Create() => View();
 
         [HttpPost]
@@ -96,8 +100,9 @@ namespace MVC.Controllers
             }
             return View(model);
         }
-
+        
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(string id)
         {
             User user = await _userManager.FindByIdAsync(id);

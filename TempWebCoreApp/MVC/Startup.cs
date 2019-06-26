@@ -28,13 +28,13 @@ namespace MVC
             })
             .AddCookie(options =>
             {
-                options.LoginPath = "/login";
-                options.LogoutPath = "/signout";
+                options.LoginPath = "/Account/Login";
+                options.LogoutPath = "/Account/LogOff";
             })
             .AddGitHub(options =>
              {
                  options.ClientId = "1ce98f2b032dabbb4708";
-                 options.ClientSecret = "0e76a7ac829858058a0b32384f37a230ae461695";
+                 options.ClientSecret = "3ae497a7102fe618e38ef651d766be30ed1b9911";
                  options.Scope.Add("user:email");
              });
 

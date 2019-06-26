@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-using MVC.Controllers.OAuthControllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net;
 
@@ -12,8 +11,8 @@ namespace MVC.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [Display(Name = "Name")]
+        public string Name { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

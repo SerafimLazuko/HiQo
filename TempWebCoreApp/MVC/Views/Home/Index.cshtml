@@ -2,27 +2,29 @@
     ViewData["Title"] = "Home Page";
 }
 
-@if (User.Identity.IsAuthenticated)
-{
-    <p>@User.Identity.Name</p>
 
-    <form method="post" asp-controller="Account" asp-action="LogOff">
-        <input type="submit" value="Выход" />
-    </form>
-}
-
-@if (User.Identity.IsAuthenticated)
+@if (User?.Identity?.IsAuthenticated ?? false)
 {
     <h1>Welcome, @User.Identity.Name</h1>
-
+    <!--
     <p>
         @foreach (var claim in Context.User.Claims)
         {
             <div><code>@claim.Type</code>: <strong>@claim.Value</strong></div>
         }
     </p>
+    -->
 
-    <a class="btn btn-lg btn-danger" href="/signout?returnUrl=">Sign out</a>
+    <form method="post" asp-controller="Account" asp-action="LogOff">
+        <input type="submit" value="Выход" />
+    </form>
+
+    <a asp-controller="ContentPage" , asp-action="ContentPage">
+        <input type="submit" value="Content" />
+    </a>
+    <a asp-controller="Roles" , asp-action="Index">
+        <input type="submit" value="Roles" />
+    </a>
 }
 else
 {
